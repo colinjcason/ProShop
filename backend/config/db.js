@@ -8,11 +8,11 @@ const connectDB = async () => {
             useCreateIndex: true
         })
 
-        console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline)
+        console.log(`MongoDB Connected: ${conn.connection.host}`.cyan)
     } catch(error) {
         console.log(`Error: ${error.message}`.red.underline.bold)
         process.exit(1)
     }
 }
 
-export default connectDB
+export default connectDB;
