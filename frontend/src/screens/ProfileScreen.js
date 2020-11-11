@@ -3,7 +3,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getUserDetails } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 
 const ProfileScreen = ({ location, history }) => {
     const [name, setName] = useState('')
@@ -20,27 +21,30 @@ const ProfileScreen = ({ location, history }) => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const { success } = userUpdateProfile
+
     useEffect(() => {
         if(!userInfo) {
             history.push('/login')
         } else {
-            if(!user.name) {
+            if(!user || !user.name) {
+                // dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
             } else {
-                setName()
-                setEmail()
+                setName(user.name)
+                setEmail(user.email)
             }
         }
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, userInfo, user])
 
     const submitHandler = (e) => {
         e.preventDefault()
         if(password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-
-        }
-        
+            dispatch(updateUserProfile({ id: user._id, name, email, password }))
+        }        
     }
 
     return (
@@ -49,43 +53,44 @@ const ProfileScreen = ({ location, history }) => {
             <h2>User Profile</h2>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
+            {success && <Message variant='success'>Profile Updated</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId='name'>
+                <Form.Group controlid='name'>
                     <Form.Label>Name</Form.Label>
                     <Form.Control 
                     type='name' 
-                    placeholder='Enter name' 
+                    placeholder='Update name' 
                     value={name} 
                     onChange={(e) => setName(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId='email'>
+                <Form.Group controlid='email'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control 
                     type='email' 
-                    placeholder='Enter Email' 
+                    placeholder='Update Email' 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
                 
                 <Form.Group>
-                    <Form.Label controlId='password'>Password</Form.Label>
+                    <Form.Label controlid='password'>Password</Form.Label>
                     <Form.Control 
                     type='password' 
-                    placeholder='Enter Password' 
+                    placeholder='Update Password' 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label controlId='confirmPassword'>Confim Password</Form.Label>
+                    <Form.Label controlid='confirmPassword'>Confim Password</Form.Label>
                     <Form.Control 
                     type='password' 
-                    placeholder='Confirm Password' 
+                    placeholder='Confirm Password'
                     value={confirmPassword} 
                     onChange={(e) => setConfirmPassword(e.target.value)}>
                     </Form.Control>

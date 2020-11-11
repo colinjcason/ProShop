@@ -35,7 +35,7 @@ const LoginScreen = ({ location, history }) => {
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId='email'>
+                <Form.Group controlid='email'>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control 
                     type='email' 
@@ -46,7 +46,7 @@ const LoginScreen = ({ location, history }) => {
                 </Form.Group>
                 
                 <Form.Group>
-                    <Form.Label controlId='password'>Password</Form.Label>
+                    <Form.Label controlid='password'>Password</Form.Label>
                     <Form.Control 
                     type='password' 
                     placeholder='Enter Password' 

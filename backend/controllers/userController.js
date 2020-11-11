@@ -23,6 +23,7 @@ const authUser = asyncHandler(async (req, res) => {
 })
 
 // register a new user
+// POST /api/users
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
 
@@ -54,6 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 // get user profile
+// GET /api/users/profile
 const getUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id)
 
@@ -66,9 +68,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(404)
-        throw new Error('cant find' + req.user._id)
+        throw new Error('User not found')
     }
-})
+  })
 
 // update user profile
 // PUT /api/users/profile
