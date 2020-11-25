@@ -1,5 +1,6 @@
 # ProShop
-MERN eCommerce site
+Fully funcitonal and modern eCommerce site built with the MERN stack.
+View fully deployed site here https://proshopmern2020.herokuapp.com/
 
 ## This project is a work in progress
 The features built so far include:
