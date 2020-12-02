@@ -6,7 +6,8 @@ import { PRODUCT_LIST_SUCCESS,
     PRODUCT_DETAILS_FAIL, 
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_SUCCESS,
-    PRODUCT_DELETE_FAIL} from '../constants/productConstants'
+    PRODUCT_DELETE_FAIL 
+} from '../constants/productConstants'
 
 export const productListReducer = (state = { products: [] }, action) => {
     switch (action.type) {

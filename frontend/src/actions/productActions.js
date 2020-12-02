@@ -8,7 +8,6 @@ import { PRODUCT_LIST_REQUEST,
     PRODUCT_DELETE_SUCCESS,
     PRODUCT_DELETE_REQUEST
 } from '../constants/productConstants';
-
 import axios from 'axios';
 
 export const listProducts = () => async (dispatch) => {

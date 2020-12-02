@@ -16,7 +16,7 @@ const ProductListScreen = ({ history, match }) => {
     const { userInfo } = userLogin
 
     const productDelete = useSelector(state => state.productDelete)
-    const { success:successDelete } = productDelete
+    const { loading:loadingDelete, success:successDelete, error: errorDelete } = productDelete
 
     useEffect(() => {
         if(userInfo && userInfo.isAdmin) {
@@ -48,6 +48,8 @@ const ProductListScreen = ({ history, match }) => {
                     </Button>
                 </Col>
             </Row>
+            {loadingDelete && <Loader />}
+            {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
             {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> 
             : (
                 <Table striped bordered hover responsive className='table-sm'>

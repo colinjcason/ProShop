@@ -16,7 +16,12 @@ import {
     userDeleteReducer,
     userUpdateReducer
 } from './reducers/userReducers'
-import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer } from './reducers/orderReducers'
+import { 
+    orderCreateReducer, 
+    orderDetailsReducer, 
+    orderPayReducer, 
+    orderListMyReducer 
+} from './reducers/orderReducers'
 
 
 const reducer = combineReducers({
